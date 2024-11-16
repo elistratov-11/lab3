@@ -33,10 +33,11 @@ int vvod(int *numb){
     return 0;
 }
 
-int add_num(int *array, int n, int *new_array, int *len){
-    int el, poz;
-    printf("введите элемент "); scanf("%d", &el);
-    printf("введите позицию "); scanf("%d", &poz);
+int add_num(int *array, int n, int *new_array, int *len, int el, int poz){
+    //int el, poz;
+    //printf("введите элемент "); scanf("%d", &el);
+    //printf("введите позицию "); scanf("%d", &poz);
+    //*array = realloc(*array, (*len+1)*sizeof(int));
     if (poz >(n+1)){
         for (int i=0; i<=n; i++){
 	    new_array[i] = array[i];
@@ -56,7 +57,7 @@ int add_num(int *array, int n, int *new_array, int *len){
 	    }
         }
     }
-    *len = n+1;
+    *len += 1;
     return 0;
 }
 
@@ -148,10 +149,12 @@ int main(){
             printf("\n");
 	}
 	if (numb == 2){
-            int *new_array = malloc((len+1)*sizeof(int));
-            add_num(numbs, len, new_array, &len);
-	    numbs = realloc(numbs, (len)*sizeof(int));
-	    numbs = new_array;
+            //int *new_array = malloc((len+1)*sizeof(int));
+	    numbs = realloc(numbs, (len+1)*sizeof(int));
+	    out(numbs, len+1);
+            add_num(numbs, len, numbs, &len, 8, 2);
+	    //numbs = realloc(numbs, (len)*sizeof(int));
+	    //numbs = new_array;
             printf("массив: ");
             out(numbs, len);
             printf("\n");
